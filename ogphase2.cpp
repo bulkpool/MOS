@@ -514,8 +514,8 @@ int main()
 {    fflush(stdin);
 	printf("inside main\n");
 	fflush(stdin);
-    inputfile = fopen("inp.txt","r");
-    outputfile = fopen("output.txt","w");
+    inputfile = fopen("inputfile.txt","r");
+    outputfile = fopen("outputfile.txt","w");
     fflush(stdin);
     LOAD();
     return(0);

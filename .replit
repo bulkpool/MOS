@@ -1,0 +1,2 @@
+language = "bash"
+run = "g++ Phase_1.cpp"
