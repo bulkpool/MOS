@@ -203,7 +203,7 @@ void EXEC_USER_PROG()
 			IR[3]=M[ra][3];
 			printf("\nIR=%s\n",IR);
 			IC++;
-			int m=(int)IR[3] -48;
+			int m=(int)IR[3] -48;  // 48 ascii table '0'
 			int n=(int)IR[2] -48;
 			if(m<10 && n<10 && m>=0 && n>=0)
 			{
