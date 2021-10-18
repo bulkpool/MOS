@@ -1,11 +1,75 @@
-0050
-0060
+hello
 JOB ID 	:	1
+NO ERROR
+IC 		:	3
+IR 		:	H
+TTC		:	3
+LLC		:	1
+TTL		:	3
+TLL		:	1
+
+JOB ID 	:	2
+OUT OF DATA
+IC 		:	1
+IR 		:	GD10
+TTC		:	1
+LLC		:	0
+TTL		:	3
+TLL		:	1
+
+JOB ID 	:	3
+LINE LIMIT EXCEEDED
+IC 		:	2
+IR 		:	PD20
+TTC		:	2
+LLC		:	1
+TTL		:	3
+TLL		:	0
+
+JOB ID 	:	4
+TIME LIMIT EXCEEDED
+IC 		:	1
+IR 		:	GD20
+TTC		:	1
+LLC		:	0
+TTL		:	1
+TLL		:	1
+
+JOB ID 	:	5
 OPERATION CODE ERROR
-IC 		:	6
-IR 		:	AD300050‚
-TTC		:	6
-LLC		:	2
-TTL		:	9
+IC 		:	2
+IR 		:	TR22
+TTC		:	2
+LLC		:	0
+TTL		:	4
+TLL		:	1
+
+JOB ID 	:	6
+Operand Error
+IC 		:	2
+IR 		:	LR9O
+TTC		:	2
+LLC		:	0
+TTL		:	4
+TLL		:	1
+
+GOOD
+JOB ID 	:	7
+TIME LIMIT EXCEEDED AND OPERAND ERROR
+IC 		:	3
+IR 		:	GDL0
+TTC		:	3
+LLC		:	1
+TTL		:	3
 TLL		:	2
+
+hello
+JOB ID 	:	8
+INVALID PAGE FAULT
+IC 		:	3
+IR 		:	PD40
+TTC		:	3
+LLC		:	1
+TTL		:	4
+TLL		:	1
 
