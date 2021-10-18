@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+//using namespace std;
 
 // variable declaration 
 char buff[40];
@@ -171,9 +172,11 @@ int ALLOCATE()
 	printf("inside ALLOCATE\n");
     int n;
     n = rand()%30;
+    
     while(ranum[n]==1){
         n = (rand()%30);
     }
+    printf("n=%d \n",n);
     ranum[n]=1;
 
     return n;
