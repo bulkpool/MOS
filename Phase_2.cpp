@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-//using namespace std;
 
 // variable declaration 
 char buff[40];
@@ -28,7 +27,7 @@ void INIT();
 void INIT_PCB();
 int ALLOCATE();
 void START();
-void EXEC_USER_PROG();
+void START_EXE();
 int ADMAP(int va);
 void MOS();
 void READ();
@@ -40,7 +39,7 @@ void TERMINATE(int em);
 int main()
 {    
   fflush(stdin);
-	printf("inside main\n");
+	// printf("inside main\n");
 	fflush(stdin);
     inputfile = fopen("inputfile.txt","r");
     outputfile = fopen("outputfile.txt","w");
@@ -51,13 +50,13 @@ int main()
 
 void LOAD()
 {
-	puts("\nInside load\n");
+	puts("Inside load\n");
 
     int i,k;
     char temp;
     while(getc(inputfile)!=EOF)
     {
-        printf("\nptr_first:%d\n",PTR );
+        printf("Inital PTR:%d\n",PTR );
 
         fseek(inputfile,-1,SEEK_CUR);
         memset(buff,0,40);
@@ -67,44 +66,45 @@ void LOAD()
 		{
 			printf("%c",buff[i]);
         }
-        printf("\nptr:%d\n",PTR );
+        printf("\nPTR:%d\n",PTR );
 		printf("\n");
 
         if(buff[0] == '$' && buff[1] == 'A' && buff[2] =='M' && buff[3] == 'J')
         {
-            printf("\nPROCESS STARTED\nINSIDE $AMJ");
-            //t=0;
+            printf("\nPROCESS STARTED\n");
             INIT();
             PTR = ALLOCATE();
             PTR = 10*PTR;
             k=PTR;
-            printf("\nPTR = %d\n",PTR);
+            printf("PTR = %d\n",PTR);
         }
         else if(buff[0] == '$' && buff[1] == 'D' && buff[2] =='T' && buff[3] == 'A')
         {
-            printf("\nINSIDE $DTA\n");
+            // printf("\n\n");
             START();
         }
 
         else if(buff[0] == '$' && buff[1] == 'E' && buff[2] =='N' && buff[3] == 'D')
         {
-            printf("\nINSIDE $END\nPROCESS ENDED.\n\n");
+            printf("\nPROCESS ENDED.\n\n");
             continue;
         }
 
         else
         {
-          printf("\nINSIDE else condition\n");
+          // printf("\nINSIDE else condition\n");
           int index = ALLOCATE();
           printf("index=%d\n",index);
-          int j = index/10;
+          
+		  int j = index/10;
           j=j+'0';
           M[k][0]= j;
           j = index%10;
           j=j+'0';
           M[k][1]= j;
-          index = index*10;
-          int sh=index;
+          
+		  index = index*10;
+          // int sh=index;
           j=0;
 			    while(j<40 && buff[j]!='\n')
 			      {
@@ -127,7 +127,7 @@ void LOAD()
 //Initalize memory 
 void INIT()
 {
-	printf("\nInside init\n");
+	printf("\nInitializing\n");
     INIT_PCB();
     int i, j;
     for(i=0;i<300;i++)
@@ -154,29 +154,28 @@ void INIT()
 //Initalize PCB structure
 void INIT_PCB()
 {
-	printf("\nInside INIT_PCB\n");
+	// printf("\nInside INIT_PCB\n");
     pcb = (struct PCB*)malloc(sizeof(struct PCB));
     pcb->LLC = 0;
     pcb->TTC = 0;
     pcb->JID=((int)buff[4]-48)*1000+((int)buff[5]-48)*100+((int)buff[6]-48)*10+((int)buff[7]-48);
-    printf("\npcb->JID by int method: %d\n",pcb->JID);
+    printf("\npcb->JID : %d\n",pcb->JID);
     pcb->TTL=((int)buff[8]-48)*1000+((int)buff[9]-48)*100+((int)buff[10]-48)*10+((int)buff[11]-48);
-    printf("\npcb->TTL by int method: %d\n",pcb->TTL);
+    printf("\npcb->TTL : %d\n",pcb->TTL);
     pcb->TLL=((int)buff[12]-48)*1000+((int)buff[13]-48)*100+((int)buff[14]-48)*10+((int)buff[15]-48);
-    printf("\npcb->TLL by int method: %d\n",pcb->TLL);
+    printf("\npcb->TLL : %d\n",pcb->TLL);
 }
 
 //Random memory allocation
 int ALLOCATE()
 {
-	printf("inside ALLOCATE\n");
+	// printf("inside ALLOCATE\n");
     int n;
     n = rand()%30;
-    
     while(ranum[n]==1){
         n = (rand()%30);
     }
-    printf("n=%d \n",n);
+	printf("n = %d \n",n);
     ranum[n]=1;
 
     return n;
@@ -185,15 +184,15 @@ int ALLOCATE()
 // Setting IC and executing instruction 1 by 1
 void START()
 {
-	printf("\nInside start\n");
+	//printf("\nInside start\n");
     IC=0;
-    EXEC_USER_PROG();
+    START_EXE();
 }
 
 // GD PD LR SR instructions
-void EXEC_USER_PROG()
+void START_EXE()
 {
-	printf("inside EXEC_USER_PROG\n");
+	printf("inside START_EXE\n");
     int i;
     int ra = ADMAP(IC);
     if(PI==0)
@@ -295,15 +294,15 @@ void EXEC_USER_PROG()
 		MOS();
 	}
 	else{
-		printf("NOT going to mos function instad going to EXEC_USER_PROG\n");
-        EXEC_USER_PROG();
+		printf("NOT going to mos function instad going to START_EXE\n");
+        START_EXE();
 	}
 }
 
 // Address Map
 int ADMAP(int va)
 {
-	printf("inside admap\n");
+	// printf("inside admap\n");
 	printf("PTR: %d va: %d\n",PTR,va );
     int j;
     int PTE = PTR + (va/10);
@@ -335,7 +334,7 @@ int ADMAP(int va)
 //Master Mode
 void MOS()
 {
-	printf("inside mos\n");
+	// printf("inside mos\n");
 
 	if(PI!=0)   //Cases(TI and PI)
 	{
@@ -365,7 +364,7 @@ void MOS()
 					IC--;
 					pcb->TTC--;
 					PI=0;
-					EXEC_USER_PROG();
+					START_EXE();
 				}
 				else
 					TERMINATE(6);   //invalid page fault
@@ -416,7 +415,7 @@ void MOS()
 
 void READ()
 {
-	printf("inside read\n");
+	// printf("inside read\n");
     SI=0;
     IR[3]='0';
     char temp;
@@ -447,7 +446,7 @@ void READ()
 			printf("\n");
 			ra++;
 		}while(buff[p]!=NULL&&buff[p]!='\n');
-		EXEC_USER_PROG();
+		START_EXE();
 	}
 	else
 	{
@@ -457,7 +456,7 @@ void READ()
 
 void WRITE()
 {
-	printf("inside write\n");
+	// printf("inside write\n");
     SI=0;
     IR[3]='0';
     int val=((int)IR[2] -48)*10 + ((int)IR[3] -48);
@@ -483,14 +482,14 @@ void WRITE()
 		}
 		fputc('\n',outputfile);
 		if(TI==0){
-            EXEC_USER_PROG();
+            START_EXE();
 		}
 	}
 }
 
 void TERMINATE(int em)
 {
-	printf("inside terminate\n");
+	// printf("inside terminate\n");
 	fputs("JOB ID 	:	",outputfile);
 	fprintf(outputfile,"%d\n",pcb->JID);
     switch(em)
@@ -523,7 +522,8 @@ void TERMINATE(int em)
 		fputs("TIME LIMIT EXCEEDED AND OPERAND ERROR",outputfile);
 		break;
 	}
-    fputs("\nIC 		:	",outputfile);
+    /* 
+	fputs("\nIC 		:	",outputfile);
     fprintf(outputfile,"%d\n",IC);
     if(IR[0]=='H'){
     	fputs("IR 		:	",outputfile);
@@ -542,13 +542,7 @@ void TERMINATE(int em)
     fprintf(outputfile,"%d\n",pcb->TTL);
     fputs("TLL		:	",outputfile);
     fprintf(outputfile,"%d\n",pcb->TLL);
-
+	*/
 	fputc('\n',outputfile);
+
 }
-
-
-
-
-
-
-
