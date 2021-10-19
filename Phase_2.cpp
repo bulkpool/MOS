@@ -50,7 +50,7 @@ int main()
 
 void LOAD()
 {
-	puts("Inside load\n");
+	puts("\nInside load\n");
 
     int i,k;
     char temp;
@@ -65,7 +65,7 @@ void LOAD()
 		for(i=0;i<40;i++)
 		{
 			printf("%c",buff[i]);
-        }
+    	}
         printf("\nPTR:%d\n",PTR );
 		printf("\n");
 
@@ -92,32 +92,33 @@ void LOAD()
 
         else
         {
-          // printf("\nINSIDE else condition\n");
-          int index = ALLOCATE();
-          printf("index=%d\n",index);
+        	// printf("\nINSIDE else condition\n");
+          	int index = ALLOCATE();
+          	printf("index=%d\n",index);
           
-		  int j = index/10;
-          j=j+'0';
-          M[k][0]= j;
-          j = index%10;
-          j=j+'0';
-          M[k][1]= j;
+		  	int j = index/10;
+          	j=j+'0';
+          	M[k][0]= j;
+          	j = index%10;
+          	j=j+'0';
+          	M[k][1]= j;
           
-		  index = index*10;
-          // int sh=index;
-          j=0;
-			    while(j<40 && buff[j]!='\n')
-			      {
-				      printf("M[%d]: ",index);
-				      for(i=0;i<4&&buff[j]!='\n';i++)
-				      {
-					      M[index][i]=buff[j++];
-					      printf("%c",M[index][i]);
-				      }
-				      index++;
-				      printf("\n");
-			      }
-          k++;
+		  	index = index*10;
+          	// int sh=index;
+          	j=0;
+		  	printf("\n");
+		  	while(j<40 && buff[j]!='\n')
+			{
+			    printf("M[%d]: ",index);
+			    for(i=0;i<4&&buff[j]!='\n';i++)
+			    {
+					M[index][i]=buff[j++];
+				    printf("%c",M[index][i]);
+			    }
+			    index++;
+			    printf("\n");
+		    }
+          	k++;
         }
     }
     fclose(inputfile);
@@ -127,7 +128,7 @@ void LOAD()
 //Initalize memory 
 void INIT()
 {
-	printf("\nInitializing\n");
+	printf("Initializing\n");
     INIT_PCB();
     int i, j;
     for(i=0;i<300;i++)
@@ -161,9 +162,9 @@ void INIT_PCB()
     pcb->JID=((int)buff[4]-48)*1000+((int)buff[5]-48)*100+((int)buff[6]-48)*10+((int)buff[7]-48);
     printf("\npcb->JID : %d\n",pcb->JID);
     pcb->TTL=((int)buff[8]-48)*1000+((int)buff[9]-48)*100+((int)buff[10]-48)*10+((int)buff[11]-48);
-    printf("\npcb->TTL : %d\n",pcb->TTL);
+    printf("pcb->TTL : %d\n",pcb->TTL);
     pcb->TLL=((int)buff[12]-48)*1000+((int)buff[13]-48)*100+((int)buff[14]-48)*10+((int)buff[15]-48);
-    printf("\npcb->TLL : %d\n",pcb->TLL);
+    printf("pcb->TLL : %d\n",pcb->TLL);
 }
 
 //Random memory allocation
@@ -175,7 +176,7 @@ int ALLOCATE()
     while(ranum[n]==1){
         n = (rand()%30);
     }
-	printf("n = %d \n",n);
+	printf("\nn = %d \n",n);
     ranum[n]=1;
 
     return n;
@@ -354,7 +355,8 @@ void MOS()
 
 					int t = ALLOCATE();
 					printf("\nValid Page Fault Handled with Block No. - %d\n",t);
-                    int j = t/10;
+                    
+					int j = t/10;
                     j=j+'0';
                     M[m][0]= j;
                     j = t%10;
@@ -543,6 +545,6 @@ void TERMINATE(int em)
     fputs("TLL		:	",outputfile);
     fprintf(outputfile,"%d\n",pcb->TLL);
 	*/
-	fputc('\n',outputfile);
+	fputs("\n \n",outputfile);
 
 }
