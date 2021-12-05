@@ -524,7 +524,7 @@ void TERMINATE(int em)
 		fputs("TIME LIMIT EXCEEDED AND OPERAND ERROR",outputfile);
 		break;
 	}
-    /* 
+    
 	fputs("\nIC 		:	",outputfile);
     fprintf(outputfile,"%d\n",IC);
     if(IR[0]=='H'){
@@ -544,7 +544,7 @@ void TERMINATE(int em)
     fprintf(outputfile,"%d\n",pcb->TTL);
     fputs("TLL		:	",outputfile);
     fprintf(outputfile,"%d\n",pcb->TLL);
-	*/
+	
 	fputs("\n \n",outputfile);
 
 }
